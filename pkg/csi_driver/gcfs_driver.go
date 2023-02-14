@@ -44,6 +44,7 @@ type GCFSDriverConfig struct {
 	EcfsDescription  string
 	IsRegional       bool
 	ClusterName      string
+	ExtraLabels      map[string]string
 }
 
 type GCFSDriver struct {

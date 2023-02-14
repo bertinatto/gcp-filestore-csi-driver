@@ -4,13 +4,13 @@ go 1.18
 
 require (
 	cloud.google.com/go/compute/metadata v0.2.1
-	github.com/container-storage-interface/spec v1.5.0
+	github.com/container-storage-interface/spec v1.6.0
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/kubernetes-csi/csi-lib-utils v0.8.1
 	github.com/kubernetes-csi/csi-test/v3 v3.1.1
 	github.com/onsi/ginkgo v1.16.5
-	github.com/onsi/gomega v1.18.1
+	github.com/onsi/gomega v1.20.0
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/net v0.5.0
@@ -20,7 +20,7 @@ require (
 	google.golang.org/genproto v0.0.0-20221202195650-67e5cbc046fd
 	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
-	gopkg.in/gcfg.v1 v1.2.0
+	gopkg.in/gcfg.v1 v1.2.3
 	k8s.io/api v0.24.1
 	k8s.io/apimachinery v0.24.1
 	k8s.io/client-go v11.0.1-0.20190805182717-6502b5e7b1b5+incompatible
@@ -28,12 +28,14 @@ require (
 	k8s.io/klog/v2 v2.60.1
 	k8s.io/kubernetes v1.24.1
 	k8s.io/mount-utils v0.24.1
-	sigs.k8s.io/boskos v0.0.0-20201002225104-ae3497d24cd7
+	sigs.k8s.io/boskos v0.0.0-20220711194915-6cb8a6fb2dd1
 	sigs.k8s.io/controller-runtime v0.12.1
+	sigs.k8s.io/gcp-compute-persistent-disk-csi-driver v1.8.2
 )
 
 require (
 	cloud.google.com/go/compute v1.15.0 // indirect
+	github.com/GoogleCloudPlatform/k8s-cloud-provider v1.18.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blang/semver/v4 v4.0.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
@@ -49,7 +51,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/google/gnostic v0.6.9 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
-	github.com/google/gofuzz v1.2.0 // indirect
+	github.com/google/gofuzz v1.2.1-0.20210504230335-f78f29fc09ea // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.0 // indirect
 	github.com/googleapis/gax-go/v2 v2.7.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -70,6 +72,7 @@ require (
 	github.com/prometheus/procfs v0.7.3 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
+	go4.org v0.0.0-20201209231011-d4a079459e60 // indirect
 	golang.org/x/term v0.4.0 // indirect
 	golang.org/x/text v0.6.0 // indirect
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
@@ -82,8 +85,8 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/apiextensions-apiserver v0.24.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220603121420-31174f50af60 // indirect
-	k8s.io/test-infra v0.0.0-20201007205216-b54c51c3a44a // indirect
-	k8s.io/utils v0.0.0-20220210201930-3a6ce19ff2f9 // indirect
+	k8s.io/test-infra v0.0.0-20210730160938-8ad9b8c53bd8 // indirect
+	k8s.io/utils v0.0.0-20220713171938-56c0de1e6f5e // indirect
 	sigs.k8s.io/json v0.0.0-20220525155127-227cbc7cc124 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect

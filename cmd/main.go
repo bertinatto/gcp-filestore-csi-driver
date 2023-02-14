@@ -28,6 +28,8 @@ import (
 	metadataservice "sigs.k8s.io/gcp-filestore-csi-driver/pkg/cloud_provider/metadata"
 	driver "sigs.k8s.io/gcp-filestore-csi-driver/pkg/csi_driver"
 	"sigs.k8s.io/gcp-filestore-csi-driver/pkg/metrics"
+
+	"sigs.k8s.io/gcp-compute-persistent-disk-csi-driver/pkg/common"
 )
 
 var (
@@ -44,6 +46,7 @@ var (
 	ecfsDescription                 = flag.String("ecfs-description", "", "Filestore multishare instance descrption. ecfs-version=<version>,image-project-id=<projectid>")
 	isRegional                      = flag.Bool("is-regional", false, "cluster is regional cluster")
 	gkeClusterName                  = flag.String("gke-cluster-name", "", "Cluster Name of the current GKE cluster driver is running on, required for multishare")
+	extraVolumeLabelsStr            = flag.String("extra-labels", "", "Extra labels to attach to each instance created. It is a comma separated list of key value pairs like '<key1>=<value1>,<key2>=<value2>'. See https://cloud.google.com/compute/docs/labeling-resources for details")
 
 	// This is set at compile time
 	version = "unknown"
@@ -56,6 +59,8 @@ func main() {
 	flag.Set("logtostderr", "true")
 	flag.Parse()
 
+	extraVolumeLabels := map[string]string{}
+
 	var provider *cloud.Cloud
 	var err error
 	ctx, cancel := context.WithCancel(context.Background())
@@ -67,6 +72,13 @@ func main() {
 			mm = metrics.NewMetricsManager()
 			mm.InitializeHttpHandler(*httpEndpoint, *metricsPath)
 			mm.EmitGKEComponentVersion()
+		}
+
+		if len(*extraVolumeLabelsStr) > 0 {
+			extraVolumeLabels, err = common.ConvertLabelsStringToMap(*extraVolumeLabelsStr)
+			if err != nil {
+				klog.Fatalf("Bad extra volume labels: %v", err)
+			}
 		}
 
 		if *enableMultishare {
@@ -106,6 +118,7 @@ func main() {
 		EcfsDescription:  *ecfsDescription,
 		IsRegional:       *isRegional,
 		ClusterName:      *gkeClusterName,
+		ExtraLabels:      extraVolumeLabels,
 	}
 
 	gcfsDriver, err := driver.NewGCFSDriver(config)

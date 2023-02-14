@@ -256,7 +256,14 @@ func (s *controllerServer) CreateVolume(ctx context.Context, req *csi.CreateVolu
 		if err != nil {
 			return nil, err
 		}
-		newFiler.Labels = labels
+
+		// Add labels coming from CLI.
+		mergedLabels, err := mergeLabels(labels, s.config.driver.config.ExtraLabels)
+		if err != nil {
+			return nil, err
+		}
+
+		newFiler.Labels = mergedLabels
 
 		// Create the instance
 		var createErr error
